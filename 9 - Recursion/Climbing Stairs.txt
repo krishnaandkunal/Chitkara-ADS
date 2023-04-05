@@ -1,0 +1,16 @@
+class Solution {
+    public int climbStairs(int n) {
+        return fibTD(n);
+    }
+    public static int fibTD(int n,int []dp) {
+
+		if (n == 0 || n==1) {
+			return 1;
+		}
+
+		int f1 = fibTD(n - 1);
+		int f2 = fibTD(n - 2);
+		return f1 + f2;
+
+	}
+}
