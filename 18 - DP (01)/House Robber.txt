@@ -1,0 +1,52 @@
+class Solution {
+    public int rob(int[] nums) {
+        // int[] dp = new int[nums.length];
+        // Arrays.fill(dp,-1);
+        // return robR(nums,0,dp); 
+        return robBU(nums);
+    }
+    
+    public int robR(int[] nums ,int i,int[] dp)
+    {
+        if(i >= nums.length)
+		{
+			return 0;
+		}
+        else if(dp[i] != -1)
+        {
+            return dp[i];
+        }
+		else
+		{
+			int p = nums[i] + robR(nums,i+2,dp);
+			int np = robR(nums,i+1,dp);
+			
+			return dp[i] = Math.max(p, np);
+		}
+    }
+    
+    
+    public int robBU(int[] nums)
+    {
+        if(nums.length == 1)
+        {
+            return nums[0];
+        }
+       int a = nums[nums.length-1];
+		int b = Math.max(nums[nums.length-1], nums[nums.length-2]);
+		
+		for(int i = nums.length-3; i >= 0; i--)
+		{
+			int p = nums[i] + a;
+			int np = b;
+			
+			int c = Math.max(p, np);
+			
+			a = b;
+			b = c;
+			
+		}
+		return b;
+        
+    }
+}
